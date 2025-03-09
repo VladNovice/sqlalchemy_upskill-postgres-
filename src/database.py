@@ -7,13 +7,13 @@ import asyncio
 # Создаем асинхронный движок
 engine = create_async_engine(
     url=settings.DATABASE_URL_asyncpg, 
-    echo=True,
-    pool_size=5,
-    max_overflow=10,
+    echo=False,
+    #pool_size=5,
+    #max_overflow=10,
 )
 
 async def test_connection():
-    async with engine.begin() as conn:
+    async with engine.connect() as conn:
         result = await conn.execute(text("SELECT version()"))
         print("PostgreSQL version:", result.scalar())
 
