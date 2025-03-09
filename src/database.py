@@ -14,7 +14,7 @@ async_engine = create_async_engine(
 
 sync_engine = create_engine(
     url=settings.DATABASE_URL_psycopg, 
-    echo=False,
+    echo=True,
     #pool_size=5,
     #max_overflow=10,
 )
