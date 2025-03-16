@@ -12,8 +12,8 @@ from database import Base
 
 intpk = Annotated[int, mapped_column(primary_key=True)]
 
-created_at = Annotated[datetime.datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))] 
-updated_at = Annotated[datetime.datetime, mapped_column(
+created_atAn = Annotated[datetime.datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))] 
+updated_atAn = Annotated[datetime.datetime, mapped_column(
         server_default=text("TIMEZONE('utc', now())"),
         onupdate=datetime.datetime.utcnow, 
     )]
@@ -40,11 +40,9 @@ class ResumesOrm(Base):
     compensation: Mapped[int | None]
     workload: Mapped[WorkLoad]
     worker_id: Mapped[int] = mapped_column(ForeignKey("workers.id"), ondelete='CASCADE') 
-    created_at: Mapped[datetime.datetime] = mapped_column(server_default=text("TIMEZONE('utc', now())"))
-    updated_at: Mapped[datetime.datetime] = mapped_column(
-        server_default=text("TIMEZONE('utc', now())"),
-        onupdate=datetime.datetime.utcnow, 
-    )
+    created_at: Mapped[created_atAn] 
+    updated_at: Mapped[updated_atAn] 
+    
     
 
     
