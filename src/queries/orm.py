@@ -12,7 +12,7 @@ def create_tables():
     metadata_obj.create_all(sync_engine)
     sync_engine.echo = True
 
-def insert_data():
+def insert_workers():
     with session_factory() as session: 
         worker_arthur = WorkersOrm(username="Arthur")
         worker_vlad = WorkersOrm(username="Vlad")

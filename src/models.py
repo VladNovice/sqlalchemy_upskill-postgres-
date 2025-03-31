@@ -39,40 +39,13 @@ class ResumesOrm(Base):
     title: Mapped[str] = mapped_column()
     compensation: Mapped[int | None]
     workload: Mapped[WorkLoad]
-    worker_id: Mapped[int] = mapped_column(ForeignKey("workers.id"), ondelete='CASCADE') 
+    worker_id: Mapped[int] = mapped_column(ForeignKey("workers.id", ondelete='CASCADE'))
     created_at: Mapped[created_atAn] 
     updated_at: Mapped[updated_atAn] 
     
     
 
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

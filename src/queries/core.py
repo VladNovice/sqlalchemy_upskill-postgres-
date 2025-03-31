@@ -1,4 +1,4 @@
-from sqlalchemy import text, insert
+from sqlalchemy import text, insert, select
 from database import sync_engine, async_engine
 from models import metadata_obj, worker_table
 
@@ -26,7 +26,7 @@ class SyncCore:
         sync_engine.echo = True
 
     @staticmethod
-    def insert_data():
+    def insert_workers():
         with sync_engine.connect() as conn:
             #stmt = """INSERT INTO workers (username) VALUES
             #    ('AO Bobr'),
@@ -40,8 +40,13 @@ class SyncCore:
             conn.execute(stmt)
             conn.commit()
 
-
-
+    @staticmethod
+    def select_workers():
+        with sync_engine.connect() as conn:
+            query = select(worker_table)
+            res = conn.execute(query)
+            workers = res.all()
+            print(f"{workers=}")
 
 class AsyncCore:
     @staticmethod
